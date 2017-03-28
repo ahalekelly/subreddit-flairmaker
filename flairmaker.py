@@ -6,8 +6,13 @@ width = 80
 spriteHeight = 20
 
 from PIL import Image, ImageDraw
-import glob
-images = glob.glob("*.png")
+from glob import glob
+images = glob("*.png")
+images.extend(glob("*.jpg"))
+images.extend(glob("*.jpeg"))
+images.extend(glob("*.tiff"))
+images.extend(glob("*.gif"))
+images.extend(glob("*.bmp"))
 images.remove(oldName)
 images.remove(newName)
 print(images)
