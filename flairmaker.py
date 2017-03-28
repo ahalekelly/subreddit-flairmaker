@@ -1,6 +1,7 @@
 oldName = "spritesheet.png"
 newName = "new_spritesheet.png"
 leftStripes = 4
+resize = True
 
 width = 80
 spriteHeight = 20
@@ -21,7 +22,10 @@ newSheet = Image.new('RGB', (width, oldSheet.height + len(images)*spriteHeight),
 newSheet.paste(oldSheet, (0,0))
 
 for i, imageName in enumerate(images):
-    newSheet.paste(Image.open(imageName), (leftStripes,oldSheet.height + i*spriteHeight))
+    sprite = Image.open(imageName)
+    if resize:
+        sprite.thumbnail((width-leftStripes, spriteHeight))
+    newSheet.paste(sprite, (leftStripes,oldSheet.height + i*spriteHeight))
 
 draw = ImageDraw.Draw(newSheet)
 for i in range(leftStripes+1):
